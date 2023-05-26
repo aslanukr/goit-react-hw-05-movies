@@ -1,16 +1,18 @@
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Homepage/Homepage';
+import Movies from './pages/MoviesPage/MoviesPage';
+import MovieDetails from './pages/MovieDetails/MovieDetails';
+import { Header } from './Header/Header';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      Перемога вже скоро...=)
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:movieId" element={<MovieDetails />} />
+      </Routes>
+    </>
   );
 };
