@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const MoviesList = ({ movies, location }) => {
-  console.log(movies);
-
   return (
     <ul
       style={{

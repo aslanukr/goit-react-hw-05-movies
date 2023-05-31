@@ -1,7 +1,7 @@
 import ExtraInfo from 'components/ExtraInfo/ExtraInfo';
 import Loader from 'components/Loader/Loader';
 import MovieCard from 'components/MovieCard/MovieCard';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from 'services/api';
 
@@ -39,7 +39,9 @@ const MovieDetails = () => {
         <>
           <MovieCard id={movie_id} info={movieInfo} />
           <ExtraInfo />
-          <Outlet />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </>
       )}
     </div>
