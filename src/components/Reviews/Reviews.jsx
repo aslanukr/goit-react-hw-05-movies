@@ -1,3 +1,4 @@
+import Loader from 'components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReviews } from 'services/api';
@@ -25,13 +26,12 @@ export const Reviews = () => {
 
     fetchReviews();
   }, [movie_id]);
-  console.log(reviews);
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loader />}
       {error && <p>Sorry, there is no information</p>}
-      {reviews ? (
+      {reviews?.length > 0 ? (
         <ul
           style={{
             display: 'flex',
@@ -46,7 +46,7 @@ export const Reviews = () => {
           ))}
         </ul>
       ) : (
-        <div>no data</div>
+        <div>We don't have any reviews for this movie</div>
       )}
     </>
   );

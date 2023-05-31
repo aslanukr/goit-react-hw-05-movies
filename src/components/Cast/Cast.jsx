@@ -1,3 +1,4 @@
+import Loader from 'components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCast } from 'services/api';
@@ -28,9 +29,9 @@ export const Cast = () => {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loader />}
       {error && <p>Sorry, there is no information</p>}
-      {cast && !error && (
+      {!error && cast?.length > 0 && (
         <ul
           style={{
             display: 'flex',
