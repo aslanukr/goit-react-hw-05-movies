@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const Trending = ({ movies, location }) => {
@@ -43,6 +44,18 @@ const Trending = ({ movies, location }) => {
       </ul>
     </>
   );
+};
+
+Trending.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      poster_path: PropTypes.string,
+      release_date: PropTypes.string,
+    })
+  ).isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default Trending;

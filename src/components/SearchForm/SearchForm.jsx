@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const SearchForm = ({ submit }) => {
   return (
     <form onSubmit={submit}>
@@ -5,6 +7,10 @@ const SearchForm = ({ submit }) => {
       <button type="submit">Search</button>
     </form>
   );
+};
+
+SearchForm.propTypes = {
+  submit: PropTypes.func.isRequired,
 };
 
 export default SearchForm;
