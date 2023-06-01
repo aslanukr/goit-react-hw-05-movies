@@ -1,48 +1,47 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+
+import {
+  Thumb,
+  TrendingContainer,
+  TrendingItem,
+  TrendingList,
+  TrendingMovie,
+  TrendingTitle,
+} from './Trending.styled';
 
 const Trending = ({ movies, location }) => {
   return (
-    <>
-      <h1>Trending Today</h1>
-      <ul
-        style={{
-          display: 'flex',
-          gap: '10px',
-          flexDirection: 'column',
-        }}
-      >
+    <TrendingContainer>
+      <TrendingTitle>Trending Today</TrendingTitle>
+      <TrendingList>
         {movies
           .filter(movie => movie.title)
           .map(({ id, title, poster_path, release_date }) => (
-            <li key={id}>
-              <Link
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                }}
+            <TrendingItem key={id}>
+              <TrendingMovie
                 to={`/movies/${id}`}
                 state={{
                   from: location,
                 }}
               >
-                <img
-                  style={{ width: '100px' }}
-                  src={
-                    poster_path
-                      ? `https://image.tmdb.org/t/p/w300/${poster_path}`
-                      : 'https://placehold.co/300x150'
-                  }
-                  alt={title}
-                />
+                <Thumb>
+                  <img
+                    src={
+                      poster_path
+                        ? `https://image.tmdb.org/t/p/w300/${poster_path}`
+                        : 'https://placehold.co/300x150'
+                    }
+                    alt={title}
+                  />
+                </Thumb>
+
                 {title}
-                {release_date && `(${release_date.slice(0, 4)})`}
-              </Link>
-            </li>
+                {release_date && ` (${release_date.slice(0, 4)})`}
+              </TrendingMovie>
+            </TrendingItem>
           ))}
-      </ul>
-    </>
+      </TrendingList>
+    </TrendingContainer>
   );
 };
 
