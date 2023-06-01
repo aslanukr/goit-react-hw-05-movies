@@ -147,9 +147,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
+  background-color: #000000;
   background-image: url('./images/spotlight-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: top;
 }
 
 code {

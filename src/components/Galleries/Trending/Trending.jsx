@@ -1,47 +1,50 @@
 import PropTypes from 'prop-types';
 
 import {
+  MovieInfoWrapper,
+  Poster,
   Thumb,
-  TrendingContainer,
-  TrendingItem,
-  TrendingList,
-  TrendingMovie,
-  TrendingTitle,
-} from './Trending.styled';
+  ListItem,
+  GalleryList,
+  MovieLink,
+  PageTitle,
+} from '../Gallery.styled';
+import PosterPlaceholder from '../../../images/poster-placeholder.png';
 
 const Trending = ({ movies, location }) => {
   return (
-    <TrendingContainer>
-      <TrendingTitle>Trending Today</TrendingTitle>
-      <TrendingList>
+    <>
+      <PageTitle>Trending Today</PageTitle>
+      <GalleryList>
         {movies
           .filter(movie => movie.title)
           .map(({ id, title, poster_path, release_date }) => (
-            <TrendingItem key={id}>
-              <TrendingMovie
+            <ListItem key={id}>
+              <MovieLink
                 to={`/movies/${id}`}
                 state={{
                   from: location,
                 }}
               >
                 <Thumb>
-                  <img
+                  <Poster
                     src={
                       poster_path
-                        ? `https://image.tmdb.org/t/p/w300/${poster_path}`
-                        : 'https://placehold.co/300x150'
+                        ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+                        : PosterPlaceholder
                     }
                     alt={title}
                   />
                 </Thumb>
-
-                {title}
-                {release_date && ` (${release_date.slice(0, 4)})`}
-              </TrendingMovie>
-            </TrendingItem>
+                <MovieInfoWrapper>
+                  {title}
+                  {release_date && ` (${release_date.slice(0, 4)})`}
+                </MovieInfoWrapper>
+              </MovieLink>
+            </ListItem>
           ))}
-      </TrendingList>
-    </TrendingContainer>
+      </GalleryList>
+    </>
   );
 };
 

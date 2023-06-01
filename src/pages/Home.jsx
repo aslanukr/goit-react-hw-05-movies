@@ -2,7 +2,7 @@ import { getTrending } from 'services/api';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
-import Trending from 'components/Trending/Trending';
+import Trending from 'components/Galleries/Trending/Trending';
 
 const Home = () => {
   const location = useLocation();

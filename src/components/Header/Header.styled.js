@@ -11,14 +11,10 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px 24px 12px 24px;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   background: linear-gradient(rgb(38, 34, 90) 0%, rgb(78, 1, 83) 100%);
-
   box-shadow: 5px 5px 5px rgba(78, 1, 83, 0.6);
 
   @media screen and (min-width: 480px) {
@@ -68,7 +64,7 @@ export const NavBtn = styled(NavLink)`
   font-weight: 400;
   color: #fffff;
 
-  transition: color 250ms ease-in;
+  transition: color 250ms ease-in, font-weight 250ms ease-in;
 
   &:hover,
   &:focus {

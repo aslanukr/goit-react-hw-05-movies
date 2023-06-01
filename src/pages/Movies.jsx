@@ -2,8 +2,10 @@ import { useSearchParams, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovies } from 'services/api';
 import Loader from 'components/Loader/Loader';
-import MoviesList from 'components/MoviesList/MoviesList';
+import MoviesList from 'components/Galleries/MoviesList/MoviesList';
 import SearchForm from 'components/SearchForm/SearchForm';
+import { PageTitle } from 'components/Galleries/Gallery.styled';
+import { FormWrapper } from 'components/SearchForm/SearchForm.styled';
 
 const Movies = () => {
   const location = useLocation();
@@ -38,16 +40,16 @@ const Movies = () => {
   };
 
   return (
-    <div>
-      <h1>Movies</h1>
-      <SearchForm submit={submit} />
-      <div>
-        {isLoading && <Loader />}
-        {!error && movies?.length > 0 && (
-          <MoviesList movies={movies} location={location} />
-        )}
-      </div>
-    </div>
+    <>
+      <FormWrapper>
+        <PageTitle>Movies</PageTitle>
+        <SearchForm submit={submit} />
+      </FormWrapper>
+      {isLoading && <Loader />}
+      {!error && movies?.length > 0 && (
+        <MoviesList movies={movies} location={location} />
+      )}
+    </>
   );
 };
 
