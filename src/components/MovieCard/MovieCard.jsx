@@ -1,19 +1,23 @@
 import PropTypes from 'prop-types';
+import { MovieWrapper, Poster, Thumb } from './MovieCard.styled';
+import PosterPlaceholder from '../../images/poster-placeholder.png';
 
 const MovieCard = ({
   id,
   info: { title, poster_path, release_date, vote_average, overview, genres },
 }) => {
   return (
-    <div key={id}>
-      <img
-        src={
-          poster_path
-            ? `https://image.tmdb.org/t/p/w300/${poster_path}`
-            : 'https://placehold.co/300x450'
-        }
-        alt={title}
-      />
+    <MovieWrapper key={id}>
+      <Thumb>
+        <Poster
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+              : PosterPlaceholder
+          }
+          alt={title}
+        />
+      </Thumb>
       <h1>
         {title} ({release_date && `${release_date.slice(0, 4)}`})
       </h1>
@@ -30,7 +34,7 @@ const MovieCard = ({
       ) : (
         <p>No info</p>
       )}
-    </div>
+    </MovieWrapper>
   );
 };
 
