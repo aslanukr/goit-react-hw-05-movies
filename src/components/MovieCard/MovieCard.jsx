@@ -1,5 +1,13 @@
 import PropTypes from 'prop-types';
-import { MovieWrapper, Poster, Thumb } from './MovieCard.styled';
+import {
+  InfoWrapper,
+  MovieWrapper,
+  Poster,
+  Thumb,
+  MovieTitle,
+  InfoTitle,
+  Info,
+} from './MovieCard.styled';
 import PosterPlaceholder from '../../images/poster-placeholder.png';
 
 const MovieCard = ({
@@ -18,22 +26,28 @@ const MovieCard = ({
           alt={title}
         />
       </Thumb>
-      <h1>
-        {title} ({release_date && `${release_date.slice(0, 4)}`})
-      </h1>
-      <p>User score: {Math.round(vote_average * 10)}%</p>
-      <h2>Overview</h2>
-      <p>{overview ? overview : <span>No info to be displayed</span>}</p>
-      <h3>Genres</h3>
-      {genres?.length > 0 ? (
-        <p>
-          {genres.map(({ id, name }) => (
-            <span key={id}> {name} </span>
-          ))}
-        </p>
-      ) : (
-        <p>No info</p>
-      )}
+      <InfoWrapper>
+        <MovieTitle>
+          {title} ({release_date && `${release_date.slice(0, 4)}`})
+        </MovieTitle>
+        <Info>User score: {Math.round(vote_average * 10)}%</Info>
+        <InfoTitle>Overview</InfoTitle>
+        <Info>
+          {overview ? overview : <Info>No info to be displayed</Info>}
+        </Info>
+        <InfoTitle>Genres</InfoTitle>
+        {genres?.length > 0 ? (
+          <Info>
+            <ul>
+              {genres.map(({ id, name }) => (
+                <li key={id}> {name} </li>
+              ))}
+            </ul>
+          </Info>
+        ) : (
+          <Info>No info</Info>
+        )}
+      </InfoWrapper>
     </MovieWrapper>
   );
 };
