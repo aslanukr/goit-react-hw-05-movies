@@ -55,8 +55,8 @@ export const Cast = () => {
                   alt={name}
                 />
               </Thumb>
-              <ActorName>{name}</ActorName> -{' '}
-              <Character>"{character}"</Character>
+              <ActorName>{name}</ActorName>
+              <Character>{character && `- "${character}"`}</Character>
             </CastItem>
           ))}
         </CastList>
