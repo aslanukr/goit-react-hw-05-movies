@@ -2,6 +2,8 @@ import { useSearchParams, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovies } from 'services/api';
 import Loader from 'components/Loader/Loader';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import MoviesList from 'components/Galleries/MoviesList/MoviesList';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { PageTitle } from 'components/Galleries/Gallery.styled';
@@ -14,6 +16,7 @@ const Movies = () => {
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -28,19 +31,30 @@ const Movies = () => {
         setIsLoading(false);
       }
     };
+
     fetchMovies();
   }, [query]);
 
   const submit = e => {
     e.preventDefault();
     const searchQuery = e.target.elements.search.value;
+    if (searchQuery === '') {
+      return toast.warn('Please enter your search request', {
+        position: 'bottom-center',
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+      });
+    }
     const nextParams = searchQuery !== '' ? { query: searchQuery } : {};
     setSearchParams(nextParams);
+    setHasSubmitted(true);
     e.target.reset();
   };
 
   return (
     <>
+      <ToastContainer autoClose={1500} />
       <FormWrapper>
         <PageTitle>Movies</PageTitle>
         <SearchForm submit={submit} />
@@ -49,6 +63,7 @@ const Movies = () => {
       {!error && movies?.length > 0 && (
         <MoviesList movies={movies} location={location} />
       )}
+      {hasSubmitted && movies.length === 0 && <p>No movies were found</p>}
     </>
   );
 };

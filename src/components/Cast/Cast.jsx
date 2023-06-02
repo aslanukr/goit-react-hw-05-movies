@@ -2,6 +2,15 @@ import Loader from 'components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCast } from 'services/api';
+import {
+  ActorName,
+  CastItem,
+  CastList,
+  Character,
+  Image,
+  Thumb,
+} from './Cast.styled';
+import PosterPlaceholder from '../../images/poster-placeholder.png';
 
 export const Cast = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,37 +39,29 @@ export const Cast = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {error && <p>Sorry, there is no information</p>}
-      {!error && cast?.length > 0 && (
-        <ul
-          style={{
-            display: 'flex',
-            gap: '10px',
-            flexDirection: 'column',
-          }}
-        >
+      {error && <p>{error}</p>}
+      {!error && cast?.length > 0 ? (
+        <CastList>
           {cast.map(({ id, name, character, profile_path }) => (
-            <li
-              key={id}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-              }}
-            >
-              <img
-                style={{ width: '100px' }}
-                src={
-                  profile_path
-                    ? `https://image.tmdb.org/t/p/w300/${profile_path}`
-                    : 'https://placehold.co/100x150'
-                }
-                alt={name}
-              />
-              {name} - {character}
-            </li>
+            <CastItem key={id}>
+              <Thumb>
+                <Image
+                  style={{ width: '100px' }}
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w300/${profile_path}`
+                      : PosterPlaceholder
+                  }
+                  alt={name}
+                />
+              </Thumb>
+              <ActorName>{name}</ActorName> -{' '}
+              <Character>"{character}"</Character>
+            </CastItem>
           ))}
-        </ul>
+        </CastList>
+      ) : (
+        <p>We don't have any cast info for this movie</p>
       )}
     </>
   );

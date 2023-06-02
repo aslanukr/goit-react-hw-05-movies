@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import {
-  InfoWrapper,
   MovieWrapper,
   Poster,
   Thumb,
   MovieTitle,
   InfoTitle,
   Info,
+  InfoWrapper,
 } from './MovieCard.styled';
 import PosterPlaceholder from '../../images/poster-placeholder.png';
 

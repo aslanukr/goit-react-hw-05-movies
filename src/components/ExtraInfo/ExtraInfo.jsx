@@ -1,18 +1,23 @@
-import { Link } from 'react-router-dom';
+import { InfoTitle } from 'components/MovieCard/MovieCard.styled';
+import {
+  ExtraButtons,
+  ExtraButtonsWrapper,
+  ExtraLink,
+} from './ExtraInfo.styled';
 
 const ExtraInfo = () => {
   return (
-    <div>
-      <p>Additional information</p>
-      <ul>
+    <ExtraButtonsWrapper>
+      <InfoTitle>More info</InfoTitle>
+      <ExtraButtons>
         <li>
-          <Link to={'cast'}>Cast</Link>
+          <ExtraLink to={'cast'}>Cast</ExtraLink>
         </li>
         <li>
-          <Link to={'reviews'}>Reviews</Link>
+          <ExtraLink to={'reviews'}>Reviews</ExtraLink>
         </li>
-      </ul>
-    </div>
+      </ExtraButtons>
+    </ExtraButtonsWrapper>
   );
 };
 

@@ -1,9 +1,11 @@
 import ExtraInfo from 'components/ExtraInfo/ExtraInfo';
 import Loader from 'components/Loader/Loader';
 import MovieCard from 'components/MovieCard/MovieCard';
+import { GoBackBtn, InfoLayer } from 'components/MovieCard/MovieCard.styled';
 import { useEffect, useState, useRef, Suspense } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from 'services/api';
+import { MdArrowBack } from 'react-icons/md';
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -31,10 +33,13 @@ const MovieDetails = () => {
   }, [movie_id]);
 
   return (
-    <div>
+    <InfoLayer>
       {isLoading && <Loader />}
       {error && <p>Sorry, there is no information</p>}
-      <Link to={backBtnLocation.current}>Go back</Link>
+      <GoBackBtn to={backBtnLocation.current}>
+        <MdArrowBack />
+        Go back
+      </GoBackBtn>
       {!error && movieInfo && (
         <>
           <MovieCard id={movie_id} info={movieInfo} />
@@ -44,7 +49,7 @@ const MovieDetails = () => {
           </Suspense>
         </>
       )}
-    </div>
+    </InfoLayer>
   );
 };
 

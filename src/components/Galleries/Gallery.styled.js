@@ -33,9 +33,6 @@ export const ListItem = styled.li`
     scale: 1.05;
   }
 
-  // @media screen and (min-width: 0px) and (max-width: 479px) {
-  //   width: calc((100% - 10px * (1)) / (1));
-  // }
   @media screen and (min-width: 768px) {
     width: calc((100% - 10px * (4 - 1)) / (4));
   }

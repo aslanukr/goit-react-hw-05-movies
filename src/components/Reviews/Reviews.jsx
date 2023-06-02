@@ -2,6 +2,7 @@ import Loader from 'components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReviews } from 'services/api';
+import { Author, Review, ReviewsList } from './Reviews.styled';
 
 export const Reviews = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,23 +31,18 @@ export const Reviews = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {error && <p>Sorry, there is no information</p>}
+      {error && <p>{error}</p>}
       {reviews?.length > 0 ? (
-        <ul
-          style={{
-            display: 'flex',
-            gap: '10px',
-            flexDirection: 'column',
-          }}
-        >
+        <ReviewsList>
           {reviews.map(({ id, author, content }) => (
             <li key={id}>
-              {author} - {content}
+              <Author>{author}</Author>
+              <Review>{content}</Review>
             </li>
           ))}
-        </ul>
+        </ReviewsList>
       ) : (
-        <div>We don't have any reviews for this movie</div>
+        <Review>We don't have any reviews for this movie</Review>
       )}
     </>
   );
