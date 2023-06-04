@@ -6,8 +6,9 @@ import {
   MovieLink,
   Poster,
   Thumb,
-} from '../Gallery.styled';
-import PosterPlaceholder from '../../../images/poster-placeholder.png';
+} from './MoviesList.styled';
+import PosterPlaceholder from '../../images/poster-placeholder.png';
+import { posterBaseURL } from 'services/api';
 
 const MoviesList = ({ movies, location }) => {
   return (
@@ -26,7 +27,7 @@ const MoviesList = ({ movies, location }) => {
                 <Poster
                   src={
                     poster_path
-                      ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+                      ? `${posterBaseURL}w300/${poster_path}`
                       : PosterPlaceholder
                   }
                   alt={title}

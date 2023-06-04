@@ -4,9 +4,9 @@ import { getMovies } from 'services/api';
 import Loader from 'components/Loader/Loader';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import MoviesList from 'components/Galleries/MoviesList/MoviesList';
+import MoviesList from 'components/MoviesList/MoviesList';
 import SearchForm from 'components/SearchForm/SearchForm';
-import { PageTitle } from 'components/Galleries/Gallery.styled';
+import { PageTitle } from 'components/MoviesList/MoviesList.styled';
 import { FormWrapper } from 'components/SearchForm/SearchForm.styled';
 
 const Movies = () => {

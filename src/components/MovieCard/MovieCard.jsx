@@ -9,6 +9,7 @@ import {
   InfoWrapper,
 } from './MovieCard.styled';
 import PosterPlaceholder from '../../images/poster-placeholder.png';
+import { posterBaseURL } from 'services/api';
 
 const MovieCard = ({
   id,
@@ -20,7 +21,7 @@ const MovieCard = ({
         <Poster
           src={
             poster_path
-              ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+              ? `${posterBaseURL}w500/${poster_path}`
               : PosterPlaceholder
           }
           alt={title}

@@ -50,3 +50,5 @@ export const getReviews = async movie_id => {
   );
   return response.data.results;
 };
+
+export const posterBaseURL = 'https://image.tmdb.org/t/p/';
