@@ -1,12 +1,10 @@
 import { getTrending } from 'services/api';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import MoviesList from 'components/MoviesList/MoviesList';
 import { PageTitle } from 'components/MoviesList/MoviesList.styled';
 
 const Home = () => {
-  const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +31,7 @@ const Home = () => {
       {isLoading && <Loader />}
       <PageTitle>Trending Today</PageTitle>
       {!error && movies ? (
-        <MoviesList movies={movies} location={location} />
+        <MoviesList movies={movies} />
       ) : (
         <p>
           Sorry! No trending movies were found! Try to search for movies on

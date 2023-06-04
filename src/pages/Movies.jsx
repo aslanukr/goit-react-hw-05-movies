@@ -1,8 +1,8 @@
-import { useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovies } from 'services/api';
 import Loader from 'components/Loader/Loader';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MoviesList from 'components/MoviesList/MoviesList';
 import SearchForm from 'components/SearchForm/SearchForm';
@@ -10,7 +10,6 @@ import { PageTitle } from 'components/MoviesList/MoviesList.styled';
 import { FormWrapper } from 'components/SearchForm/SearchForm.styled';
 
 const Movies = () => {
-  const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
@@ -35,21 +34,10 @@ const Movies = () => {
     fetchMovies();
   }, [query]);
 
-  const submit = e => {
-    e.preventDefault();
-    const searchQuery = e.target.elements.search.value;
-    if (searchQuery === '') {
-      return toast.warn('Please enter your search request', {
-        position: 'bottom-center',
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
-      });
-    }
+  const handleSubmit = searchQuery => {
     const nextParams = searchQuery !== '' ? { query: searchQuery } : {};
     setSearchParams(nextParams);
     setHasSubmitted(true);
-    e.target.reset();
   };
 
   return (
@@ -57,13 +45,11 @@ const Movies = () => {
       <ToastContainer autoClose={1500} />
       <FormWrapper>
         <PageTitle>Movies</PageTitle>
-        <SearchForm submit={submit} />
+        <SearchForm submit={handleSubmit} />
       </FormWrapper>
       {isLoading && <Loader />}
-      {!error && movies?.length > 0 && (
-        <MoviesList movies={movies} location={location} />
-      )}
-      {hasSubmitted && movies.length === 0 && <p>No movies were found</p>}
+      {!error && movies?.length > 0 && <MoviesList movies={movies} />}
+      {hasSubmitted && movies.length === 0 && <div>No movies were found</div>}
     </>
   );
 };

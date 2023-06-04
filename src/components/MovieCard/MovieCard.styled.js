@@ -48,7 +48,7 @@ export const InfoTitle = styled.h2`
   color: #bd7c15;
 `;
 
-export const Info = styled.p`
+export const Info = styled.div`
   margin-bottom: 10px;
   font-size: 16px;
 `;

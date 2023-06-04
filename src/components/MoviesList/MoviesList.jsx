@@ -9,8 +9,10 @@ import {
 } from './MoviesList.styled';
 import PosterPlaceholder from '../../images/poster-placeholder.png';
 import { posterBaseURL } from 'services/api';
+import { useLocation } from 'react-router-dom';
 
-const MoviesList = ({ movies, location }) => {
+const MoviesList = ({ movies }) => {
+  const location = useLocation();
   return (
     <GalleryList>
       {movies
@@ -53,7 +55,6 @@ MoviesList.propTypes = {
       release_date: PropTypes.string,
     })
   ).isRequired,
-  location: PropTypes.object.isRequired,
 };
 
 export default MoviesList;
