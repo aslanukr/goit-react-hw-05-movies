@@ -29,7 +29,7 @@ const MoviesList = ({ movies }) => {
                 <Poster
                   src={
                     poster_path
-                      ? `${posterBaseURL}w300/${poster_path}`
+                      ? `${posterBaseURL}w500/${poster_path}`
                       : PosterPlaceholder
                   }
                   alt={title}
